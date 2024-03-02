@@ -1,45 +1,32 @@
 import Clients.*;
+import Clients.clinicstaff.Doctor;
+import Clients.implementation.*;
 
 import java.time.LocalDate;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
+import Clients.VeterinaryClinic;
 
 
 public class Main {
     public static void main(String[] args) {
-        Lion leva = new Lion("leva", 45, LocalDate.now(), new Owner());
-        Dog sharik = new Dog("Pesel", 5, LocalDate.now(), new Owner());
-        Fish goldFish = new Fish("Gold Fish", 1, LocalDate.now(), new Owner());
-        Swallow swallow1 = new Swallow("Top Gun", 1, LocalDate.now(), new Owner());
-        Duck mackDuck = new Duck("Mac Duck", 10, LocalDate.now(), new Owner());
+        Dog sharik = new Dog("Дружок", 5, LocalDate.now(), new Owner());
+        Dog sharik1 = new Dog("Пирожок", 15, LocalDate.now(), new Owner());
+        Duck duck = new Duck("Макдак", 2, LocalDate.now(), new Owner());
+        Swallow swallow = new Swallow("Птичка", 2, LocalDate.now(), new Owner());
 
-        System.out.println(leva);
-        leva.live();
-        leva.toGo();
+        System.out.println(sharik.getType() + " " + sharik.getName() + " бежит со скоростью " + sharik.run(15));
 
-        System.out.println(sharik);
-        sharik.live();
-        sharik.toGo();
+        VeterinaryClinic vc = new VeterinaryClinic();
+        vc.addPatient(sharik);
+        vc.addPatient(sharik1);
+        vc.addPatient(duck);
+        vc.addPatient(swallow);
+        System.out.println(vc.getAllRunners());
+        System.out.println(vc.getAllFlyers());
 
-        System.out.println(goldFish);
-        goldFish.swim();
-
-        System.out.println(swallow1);
-        swallow1.fly();
-
-        System.out.println(mackDuck);
-        mackDuck.toGo();
-        mackDuck.swim();
-        mackDuck.fly();
-
-        ArrayList<Animal> animals = new ArrayList<>();
-        animals.add(leva);
-        animals.add(sharik);
-        animals.add(goldFish);
-        animals.add(mackDuck);
-        animals.add(swallow1);
-        System.out.println(animals);
+        vc.addPersonal("Ivan", "Ivanov", 1234458255, "Moscow", 17, "Doctor");
+        vc.addPersonal("Alena", "Petrova", 825534871, "Lipetsk", 7, "Nurse");
+        System.out.println(vc.getDoctors());
+        System.out.println(vc.getNurses());
     }
 
 }
